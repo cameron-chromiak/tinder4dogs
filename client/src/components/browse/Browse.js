@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+import {connect} from 'react-redux'
+import {fetchImage} from '../../actions/index'
 
 
 class Browse extends Component{
+
+  componentDidMount(){
+    this.props.fetchImage()
+  }
 
   render(){
     return(
@@ -11,7 +16,12 @@ class Browse extends Component{
       </div>
     )
   }
-
 }
 
-export default Browse
+const mapStateToProps = state =>{
+  return {images: state.images}
+  console.log(this.props);
+}
+
+
+export default connect(mapStateToProps, {fetchImage})(Browse)

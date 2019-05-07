@@ -1,5 +1,5 @@
 import {FETCH_IMAGE} from './types'
-import streams from '../apis/streams'
+import dogAPI from '../apis/dogAPI'
 import history from '../history'
 
 export const signIn = (userId) =>{
@@ -15,12 +15,12 @@ export const signOut = () =>{
   }
 }
 
-export const createStream = (formValues) => async (dispatch, getState) => {
-  const {userId} = getState().auth
-  const res = await streams.post('/streams', {...formValues, userId})
+export const fetchImage = () => async (dispatch) => {
+  const res = await dogAPI.get('/breeds/image/random')
+  // let x = {data: true}
   dispatch({
     type: FETCH_IMAGE,
     payload: res.data
   })
-  history.push('/')
+  // history.push('/')
 }

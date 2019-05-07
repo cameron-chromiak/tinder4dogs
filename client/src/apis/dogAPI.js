@@ -2,5 +2,5 @@ import axios from 'axios'
 
 
 export default axios.create({
-  baseURL: 'https://dog.ceo/api/'
+  baseURL: 'https://dog.ceo/api'
 })
