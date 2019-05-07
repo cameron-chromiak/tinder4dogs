@@ -5,7 +5,7 @@ const cors = require('cors')
 const path = require('path')
 
 //Load Routes
-const profile = require('./routes/api/profile')
+const user = require('./routes/api/user')
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 //Routes
-app.use('/api/profile', profile)
+app.use('/api/user/', user)
 
 
 const port = process.env.PORT || 5000
