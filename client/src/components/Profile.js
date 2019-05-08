@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchUserProfile} from '../actions/index'
 import '../styles/ProfileStyle.css'
-import ImageOptionsMask from './ImageOptionsMask'
+// import ImageOptionsMask from './ImageOptionsMask'
+import UserHeader from './UserHeader'
 
-
-// TODO: if not that users page add heart
+// TODO: if not that users page add heart; pass props to UserHeader
 class Browse extends Component{
 
   componentDidMount(){
@@ -13,17 +13,21 @@ class Browse extends Component{
   }
 
   deleteImage = (e) =>{
-    console.log(e.target.key);
+    console.log(e.target);
   }
 
   renderProfile(){
     const {profile} = this.props.profile.profile
+    if(profile.savedImages.length < 1){
+      return( <div>No images</div>)
+    }
+
     return(
       profile.savedImages.map((image, i)=>{
         return(
-          <div key={i} className='image-container'>
-            <img className='image' src={image}/>
-            <i onClick={this.deleteImage} class="trash icon"/>
+          <div key={i} onClick={this.deleteImage} className='image-container'>
+            <img className='image' src={image} alt='Image not available'/>
+            <i class="trash icon"/>
             {/*<i class="heart icon"/> if not users page*/}
           </div>
         )
@@ -32,14 +36,16 @@ class Browse extends Component{
   }
 
   render(){
-    if(this.props.profile.profile){
-      return <div className='container'>{this.renderProfile()}</div>
+    if(!this.props.profile.profile){
+      return(
+        <div>
+            Loading
+        </div>
+      )
     }
-    return(
-      <div>
-          Profile
-      </div>
-    )
+      return <div className='container'>
+        <UserHeader/>
+      {this.renderProfile()}</div>
   }
 }
 

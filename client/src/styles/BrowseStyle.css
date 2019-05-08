@@ -1,0 +1,11 @@
+.browse-container{
+  text-align: center;
+  margin-top: 2rem;
+
+}
+.browse-button-container{
+  margin-top: 1rem;
+}
+.browse-img{
+  max-height: 50vh; 
+}

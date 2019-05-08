@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchImage, saveImageToUser} from '../../actions/index'
 import auth from '../../reducers/index'
+import '../../styles/BrowseStyle.css'
 
 class Browse extends Component{
 
@@ -26,22 +27,15 @@ class Browse extends Component{
   }
 
   render(){
-    const container = {
-      height: '50vh'
-    }
 
     if(this.props.images.images){
       return(
-        <div className='ui one column stackable center aligned page grid'>
-        <div className='computer only row'>
-          <div className='column'>
-            <img  style={container} src={this.props.images.images.message} alt=''/>
-          </div>
-        </div>
-          <div className=''>
-          <button onClick={this.previousImage} className='ui icon button item'><i className='arrow left icon'></i></button>
-            <button onClick={this.saveToUser} className='ui icon button item'><i className='heart icon'></i></button>
-            <button onClick={this.nextImage} className='ui icon button item'><i className='arrow right icon'></i></button>
+        <div className='browse-container browse-container-sm'>
+            <img className='browse-img' src={this.props.images.images.message} alt=''/>
+          <div className='browse-button-container'>
+            {/*<button onClick={this.previousImage} className='ui icon button item browse-button'><i className='arrow left icon'></i></button>*/}
+            <button onClick={this.saveToUser} className='ui icon button item browse-button'><i className='heart icon'></i></button>
+            <button onClick={this.nextImage} className='ui icon button item browse-button'><i className='arrow right icon'></i></button>
           </div>
         </div>
       )
