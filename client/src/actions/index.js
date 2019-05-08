@@ -1,5 +1,5 @@
 import {FETCH_IMAGE} from './types'
-import dogAPI from '../apis/dogAPI'
+import {dogAPI, serverAPI} from '../apis/apiUrls'
 import history from '../history'
 
 export const signIn = (userId) =>{
@@ -15,7 +15,7 @@ export const signOut = () =>{
   }
 }
 
-export const fetchImage = () => async (dispatch) => {
+export const fetchImage = () => async dispatch => {
   const res = await dogAPI.get('/breeds/image/random')
   // let x = {data: true}
   dispatch({
@@ -23,4 +23,8 @@ export const fetchImage = () => async (dispatch) => {
     payload: res.data
   })
   // history.push('/')
+}
+
+export const saveImageToUser = (url, id) => async dispatch =>{
+  const res = await serverAPI.post('/api/user/save', {url, id})
 }

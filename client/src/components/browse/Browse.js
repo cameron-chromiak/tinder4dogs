@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchImage} from '../../actions/index'
+import {fetchImage, saveImageToUser} from '../../actions/index'
 import {auth} from '../../reducers/index'
 
 class Browse extends Component{
@@ -19,17 +19,23 @@ class Browse extends Component{
   }
 
   saveToUser = () =>{
+    let imgUrl = this.props.images.images.message
+    let userId = this.props.userInfo.userId
 
+    this.props.saveImageToUser(imgUrl, userId)
   }
 
   render(){
-    console.log(this.props.userInfo);
+    const container = {
+      height: '50vh'
+    }
+
     if(this.props.images.images){
       return(
         <div className='ui one column stackable center aligned page grid'>
         <div className='computer only row'>
           <div className='column'>
-            <img src={this.props.images.images.message} alt=''/>
+            <img  style={container} src={this.props.images.images.message} alt=''/>
           </div>
         </div>
           <div className=''>
@@ -57,4 +63,4 @@ const mapStateToProps = state =>{
 }
 
 
-export default connect(mapStateToProps, {fetchImage})(Browse)
+export default connect(mapStateToProps, {fetchImage, saveImageToUser})(Browse)

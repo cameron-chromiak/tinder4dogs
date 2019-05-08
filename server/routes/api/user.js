@@ -6,6 +6,7 @@ const Profile = require('../../models/Profile')
 
 
 router.post('/save', (req, res) =>{
+  //create user if not already in db
   res.json({data: req.body})
   Profile.findOne({userId: req.body.id}).then( profile =>{
     if(!profile){
@@ -13,10 +14,14 @@ router.post('/save', (req, res) =>{
       newUserProfile.save()
     }
   })
+
+
+  // TODO: if already saved dont save
   Profile.findOneAndUpdate({userId: req.body.id},
     // TODO: check if already in there
   {'$push': {savedImages: req.body.url}}).then(p => console.log(p))
 
-})
+  })
+
 
 module.exports = router
