@@ -1,0 +1,19 @@
+
+.image{
+  max-width: 300px;
+  padding: 4px;
+  display: block;
+
+}
+.container{
+margin: 1rem;
+display: flex;
+flex-wrap: wrap;
+align-items: flex-start;
+flex-direction: row;
+max-height: 100vh;
+justify-content: center;
+}
+.image-container{
+  border: 1px solid red;
+}

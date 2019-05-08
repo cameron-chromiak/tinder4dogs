@@ -8,7 +8,7 @@ import Profile from './Profile'
 import history from '../history'
 
 const App = () =>{
-  return(<div className='ui container'>
+  return(<div className='ui'>
       <Router history={history}>
         <div>
           <Header/>
