@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchImage, saveImageToUser} from '../../actions/index'
-import {auth} from '../../reducers/index'
+import auth from '../../reducers/index'
 
 class Browse extends Component{
 

@@ -24,4 +24,12 @@ router.post('/save', (req, res) =>{
   })
 
 
+//should be GET
+router.post('/profile', (req, res) =>{
+  console.log('Ping', req.body)
+  Profile.findOne({userId: req.body.id}).then(profile =>{
+    res.json({profile})
+  })
+})
+
 module.exports = router

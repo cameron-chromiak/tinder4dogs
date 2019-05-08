@@ -4,5 +4,6 @@ import imageReducer from './ImageReducer'
 
 export default combineReducers({
   auth: authReducer,
-  images: imageReducer
+  images: imageReducer,
+  profile: imageReducer
 })

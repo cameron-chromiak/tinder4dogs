@@ -1,4 +1,4 @@
-import {FETCH_IMAGE} from './types'
+import {FETCH_IMAGE, FETCH_USER_PROFILE} from './types'
 import {dogAPI, serverAPI} from '../apis/apiUrls'
 import history from '../history'
 
@@ -25,6 +25,15 @@ export const fetchImage = () => async dispatch => {
   // history.push('/')
 }
 
+// TODO: send response verification
 export const saveImageToUser = (url, id) => async dispatch =>{
   const res = await serverAPI.post('/api/user/save', {url, id})
+}
+
+export const fetchUserProfile = id => async dispatch =>{
+  const res = await serverAPI.post('/api/user/profile', {id})
+  dispatch({
+    type: FETCH_USER_PROFILE,
+    payload: res.data
+  })
 }
