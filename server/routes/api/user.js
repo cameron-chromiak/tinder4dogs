@@ -49,7 +49,9 @@ router.post('/profile', (req, res) =>{
 // @ api/user/profile/updateprofile
 // @ logged in user
 // @edit users profile header
-router.patch
+router.patch('/updateProfile', (req, res) =>{
+  console.log(req.body.id, req.body.data);
+})
 
 
 module.exports = router

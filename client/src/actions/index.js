@@ -39,7 +39,6 @@ export const fetchUserProfile = id => async dispatch =>{
 }
 
 export const updateProfile = (id, data) => async dispatch =>{
-  console.log(id, data)
   const res = await serverAPI.patch('/api/user/updateProfile', {id, data})
   dispatch({
     type: UPDATE_PROFILE,

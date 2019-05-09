@@ -1,11 +1,21 @@
 .user-header-container{
   display: flex;
-  justify-content: space-around
+  justify-content: space-around;
+  width: 80vw;
+  height: 20vh;
 }
 .user-header-about{
   width: 60%;
 }
 .hidden{
   display: none;
-  color: red;
+}
+.user-header-name{
+  width: 8vw;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.25
+}
+.user-header-about{
+  font-size: 1.1rem;
 }

@@ -1,13 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import ContentEditable from 'react-contenteditable'
 import {updateProfile} from '../actions/index'
+import {auth} from '../reducers/index'
 import '../styles/Main.css'
 
 class UserHeader extends React.Component{
 
   state={
     isEditable: false,
+    aboutMeText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    firstName: 'Test',
+    lastName: 'Name'
   }
+
 
   toggleEditClass = () =>{
     this.setState({isEditable: !this.state.isEditable})
@@ -17,28 +23,56 @@ class UserHeader extends React.Component{
     let isHidden = this.state.isEditable
     return (isHidden) ? 'ui blue hidden': 'ui button blue'
   }
+
   saveButtonStyle = () =>{
+
+    //cahge button
     let isHidden = !this.state.isEditable
+
+
+    //send data
+    let userData = {
+      aboutMeText: this.state.aboutMeText,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName}
+      // TODO: Stop this from running on load
+    this.props.updateProfile(this.props.userInfo.userId, userData)
+
+
+    //return this here, so function runs before
     return (isHidden) ? 'ui green hidden': 'ui button green'
-    // this.updateProfile(this.props)
   }
 
+  handleChange = propertyName => e => {
+    this.setState({ [propertyName]: e.target.value });
+  };
 
   render(){
-    const {isEditable} = this.state
     return(
     <div>
       <div className='user-header-container ui segment'>
         <div className='user-header-image'>
           <img src="" alt="Profile Pic"/>
         </div>
-        <div className='user-header-name '>
-          <h3 contentEditable={`${isEditable}`}>NAMe</h3>
-          <h3 contentEditable={`${isEditable}`}>NAMe</h3>
+        <div className='user-header-name'>
+        {/*first Name*/}
+        <ContentEditable
+        html={this.state.firstName}
+        disabled={!this.state.isEditable}
+        onChange={this.handleChange('firstName')}
+         />
+         {/*LastName*/}
+        <ContentEditable
+        html={this.state.lastName}
+        disabled={!this.state.isEditable}
+        onChange={this.handleChange('lastName')}
+         />
         </div>
-        <div className='user-header-about' contentEditable={`${isEditable}`}>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est explicabo vel, aliquid blanditiis ipsa expedita placeat ad non atque debitis magnam necessitatibus, sequi! Ab totam soluta aliquam iste architecto nihil labore ut! Earum provident quo eum. Aspernatur laudantium, excepturi explicabo.</p>
-        </div>
+        <ContentEditable className='user-header-about'
+        html={this.state.aboutMeText}
+        disabled={!this.state.isEditable}
+        onChange={this.handleChange('aboutMeText')}
+         />
         <span>
           <button className={this.editButtonStyle()} onClick={this.toggleEditClass}>Edit</button>
           <button className={this.saveButtonStyle()} onClick={this.toggleEditClass}>Save</button>
@@ -49,8 +83,10 @@ class UserHeader extends React.Component{
   }
 }
 
-// const mapStateToProps = state =>{
-//   return null
-// }
-//
-// export default connect(mapStateToProps, updateProfile)(UserHeader)
+const mapStateToProps = state =>{
+  return { userInfo: state.auth,
+          functions: state.images
+  }
+}
+
+export default connect(mapStateToProps, {updateProfile})(UserHeader)
