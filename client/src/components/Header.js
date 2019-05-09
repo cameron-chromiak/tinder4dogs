@@ -6,8 +6,16 @@ import GoogleAuth from './GoogleAuth'
 
 class Header extends React.Component{
 
+  showLinks(){
+    let {isSignedIn, userId} = this.props.userInfo
+
+    if(isSignedIn){
+      return <Link to={`/profile/${userId}`} className='item'>Profile</Link>
+    }
+  }
+
   render(){
-    const userId = this.props.userInfo.userId
+
 
   return(
     <div>
@@ -15,7 +23,7 @@ class Header extends React.Component{
           <Link to='/' className='item'>Tinder for Dogs</Link>
         <div className='right menu'>
           <Link to='/browse' className='item'>Browse</Link>
-          <Link to={`/profile/${userId}`} className='item'>Profile</Link>
+          {this.showLinks()}
           <Link to='/' className='item'>Home</Link>
           <GoogleAuth/>
         </div>

@@ -15,14 +15,16 @@ export const signOut = () =>{
   }
 }
 
+export const createProfile = (id) => async dispatch =>{
+  const res = await serverAPI.post('/api/user/create', {id})
+}
+
 export const fetchImage = () => async dispatch => {
   const res = await dogAPI.get('/breeds/image/random')
-  // let x = {data: true}
   dispatch({
     type: FETCH_IMAGE,
     payload: res.data
   })
-  // history.push('/')
 }
 
 // TODO: send response verification

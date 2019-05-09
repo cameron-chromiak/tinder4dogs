@@ -39,7 +39,7 @@ class Browse extends Component{
     if(!this.props.profile.profile){
       return(
         <div>
-            Loading
+          
         </div>
       )
     }
