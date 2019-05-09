@@ -5,3 +5,7 @@
 .user-header-about{
   width: 60%;
 }
+.hidden{
+  display: none;
+  color: red;
+}

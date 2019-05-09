@@ -2,9 +2,15 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 
+// @ ROUTE
+// @ ACESS
+// @DESCRIPTION
+
 const Profile = require('../../models/Profile')
 
-
+// @ /browse
+// @ public
+// @save images to current user
 router.post('/save', (req, res) =>{
   //create user if not already in db
   // FIXME: This does not work on first save!
@@ -24,6 +30,9 @@ router.post('/save', (req, res) =>{
 
 
 //should be GET
+// @ api/user/profile
+// @ public
+// @show user profile images
 router.post('/profile', (req, res) =>{
   Profile.findOne({userId: req.body.id}).then( profile =>{
     if(!profile){
@@ -36,5 +45,11 @@ router.post('/profile', (req, res) =>{
     }
   })
 })
+
+// @ api/user/profile/updateprofile
+// @ logged in user
+// @edit users profile header
+router.patch
+
 
 module.exports = router

@@ -22,7 +22,6 @@ class Browse extends Component{
   saveToUser = () =>{
     let imgUrl = this.props.images.images.message
     let userId = this.props.userInfo.userId
-
     this.props.saveImageToUser(imgUrl, userId)
   }
 

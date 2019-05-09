@@ -1,4 +1,4 @@
-import {FETCH_IMAGE, FETCH_USER_PROFILE} from './types'
+import {FETCH_IMAGE, FETCH_USER_PROFILE, UPDATE_PROFILE} from './types'
 import {dogAPI, serverAPI} from '../apis/apiUrls'
 import history from '../history'
 
@@ -34,6 +34,15 @@ export const fetchUserProfile = id => async dispatch =>{
   const res = await serverAPI.post('/api/user/profile', {id})
   dispatch({
     type: FETCH_USER_PROFILE,
+    payload: res.data
+  })
+}
+
+export const updateProfile = (id, data) => async dispatch =>{
+  console.log(id, data)
+  const res = await serverAPI.patch('/api/user/updateProfile', {id, data})
+  dispatch({
+    type: UPDATE_PROFILE,
     payload: res.data
   })
 }

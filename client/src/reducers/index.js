@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
 import authReducer from './AuthReducer'
-import imageReducer from './ImageReducer'
+import images from './mainReducer'
 
 export default combineReducers({
   auth: authReducer,
-  images: imageReducer,
-  profile: imageReducer
+  images: images,
+  profile: images,
 })
