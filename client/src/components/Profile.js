@@ -27,7 +27,7 @@ class Browse extends Component{
         return(
           <div key={i} onClick={this.deleteImage} className='image-container'>
             <img className='image' src={image} alt='Image not available'/>
-            <i class="trash icon"/>
+            <i className="trash icon"/>
             {/*<i class="heart icon"/> if not users page*/}
           </div>
         )

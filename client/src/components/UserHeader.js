@@ -9,9 +9,19 @@ class UserHeader extends React.Component{
 
   state={
     isEditable: false,
-    aboutMeText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-    firstName: 'Test',
-    lastName: 'Name'
+    aboutMeText: '',
+    firstName: '',
+    lastName: ''
+  }
+
+  componentDidMount(){
+
+    let {firstName, lastName, aboutMeText} = this.props.functions.profile.profile
+    this.setState({
+      firstName,
+      lastName,
+      aboutMeText
+    })
   }
 
 
@@ -25,22 +35,23 @@ class UserHeader extends React.Component{
   }
 
   saveButtonStyle = () =>{
-
-    //cahge button
+    //change button
     let isHidden = !this.state.isEditable
+    if(isHidden){
+      this.saveProfile()
+      return 'ui green hidden'
+    }else{
+        return 'ui button green'
+    }
+  }
 
-
-    //send data
+  saveProfile = () =>{
     let userData = {
       aboutMeText: this.state.aboutMeText,
       firstName: this.state.firstName,
       lastName: this.state.lastName}
-      // TODO: Stop this from running on load
-    this.props.updateProfile(this.props.userInfo.userId, userData)
 
-
-    //return this here, so function runs before
-    return (isHidden) ? 'ui green hidden': 'ui button green'
+    this.props.updateProfile(this.props.userInfo.userId, {userData})
   }
 
   handleChange = propertyName => e => {

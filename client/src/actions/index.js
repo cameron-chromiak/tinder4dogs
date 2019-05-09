@@ -39,7 +39,7 @@ export const fetchUserProfile = id => async dispatch =>{
 }
 
 export const updateProfile = (id, data) => async dispatch =>{
-  const res = await serverAPI.patch('/api/user/updateProfile', {id, data})
+  const res = await serverAPI.post('/api/user/updateProfile', {id, data})
   dispatch({
     type: UPDATE_PROFILE,
     payload: res.data

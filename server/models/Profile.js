@@ -5,18 +5,17 @@ const ProfileSchema = new Schema({
   userId: String,
   savedImages: Array,
   firstName: {
-    default: 'First name',
+    default: '',
     type: String
   },
   lastName: {
-    default: 'First name',
+    default: '',
     type: String
   },
-  lastName: {
-    default: 'First name',
-    type: String
-  },
-  profileAbout: String,
+  aboutMeText: {
+    default: '',
+    type:String},
+
   profilePicture: String
 
   // followers: Array,

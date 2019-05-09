@@ -49,8 +49,12 @@ router.post('/profile', (req, res) =>{
 // @ api/user/profile/updateprofile
 // @ logged in user
 // @edit users profile header
-router.patch('/updateProfile', (req, res) =>{
-  console.log(req.body.id, req.body.data);
+router.post('/updateProfile', (req, res) =>{
+  // console.log(req.body.data)
+  Profile.findOneAndUpdate({userId: req.body.id},
+  {'$set': {firstName: req.body.data.userData.firstName,
+            lastName:  req.body.data.userData.lastName ,
+            aboutMeText:  req.body.data.userData.aboutMeText }}).then(res => console.log(res))
 })
 
 
