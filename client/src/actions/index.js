@@ -1,4 +1,4 @@
-import {FETCH_IMAGE, FETCH_USER_PROFILE, UPDATE_PROFILE} from './types'
+import {FETCH_IMAGE, FETCH_USER_PROFILE, UPDATE_PROFILE, DELETE_IMAGE} from './types'
 import {dogAPI, serverAPI} from '../apis/apiUrls'
 import history from '../history'
 
@@ -46,4 +46,12 @@ export const updateProfile = (id, data) => async dispatch =>{
     type: UPDATE_PROFILE,
     payload: res.data
   })
+}
+export const deleteImage = (id, src) => dispatch =>{
+  serverAPI.post('/api/user/deleteImage', {id, src})
+  // dispatch({
+  //   type: DELETE_IMAGE,
+  //   payload: res.data
+  // })
+
 }

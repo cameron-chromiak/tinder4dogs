@@ -33,6 +33,16 @@ class UserHeader extends React.Component{
     let isHidden = this.state.isEditable
     return (isHidden) ? 'ui blue hidden': 'ui button blue'
   }
+  renderActionButtons(){
+    if(this.props.userInfo.isSignedIn){
+      return(
+        <span>
+          <button className={this.editButtonStyle()} onClick={this.toggleEditClass}>Edit</button>
+          <button className={this.saveButtonStyle()} onClick={this.toggleEditClass}>Save</button>
+        </span>
+      )
+    }
+  }
 
   saveButtonStyle = () =>{
     //change button
@@ -84,10 +94,7 @@ class UserHeader extends React.Component{
         disabled={!this.state.isEditable}
         onChange={this.handleChange('aboutMeText')}
          />
-        <span>
-          <button className={this.editButtonStyle()} onClick={this.toggleEditClass}>Edit</button>
-          <button className={this.saveButtonStyle()} onClick={this.toggleEditClass}>Save</button>
-        </span>
+         {this.renderActionButtons()}
       </div>
       </div>
     )

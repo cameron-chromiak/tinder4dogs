@@ -23,6 +23,10 @@ class Browse extends Component{
     let imgUrl = this.props.images.images.message
     let userId = this.props.userInfo.userId
     this.props.saveImageToUser(imgUrl, userId)
+    setTimeout(() => {
+    this.nextImage()
+  }, 100);
+
   }
 
   render(){

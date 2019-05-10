@@ -55,5 +55,12 @@ router.post('/updateProfile', (req, res) =>{
             aboutMeText:  req.body.data.userData.aboutMeText }}).then(res => console.log(res))
 })
 
+// @ api/user/profile/deleteImage
+// @ logged in user
+// @delete image with from array with that user's id
+router.post('/deleteImage', (req, res) =>{
+  Profile.update({userId: req.body.id},
+  {'$pull': {'savedImages' : req.body.src}}).then(res => console.log(res))
+})
 
 module.exports = router
