@@ -1,6 +1,6 @@
 const INITAL_STATE = {
   isSignedIn: null,
-  userIdL: null
+  userId: null
 }
 
 export default (state = INITAL_STATE, action) => {

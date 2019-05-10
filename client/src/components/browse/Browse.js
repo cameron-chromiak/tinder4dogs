@@ -8,8 +8,8 @@ class Browse extends Component{
 
 
   componentDidMount(){
-    this.props.fetchImage()
-
+    if(!this.props.images.images){
+      this.props.fetchImage()}
   }
 
   nextImage = () =>{

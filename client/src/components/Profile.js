@@ -4,20 +4,21 @@ import {fetchUserProfile, deleteImage} from '../actions/index'
 import '../styles/ProfileStyle.css'
 // import ImageOptionsMask from './ImageOptionsMask'
 import UserHeader from './UserHeader'
-import {history} from '../history'
+import history from '../history'
 
 // TODO: if not that users page add heart; pass props to UserHeader
 class Browse extends Component{
 
   componentDidMount(){
     this.props.fetchUserProfile(this.props.match.params.id)
+    console.log(this.props.auth.userIdL)
+  }
+  componentWillReceiveProps(){
+    // history.push(`/profile/${this.props.auth.userId}` )
   }
 
   deleteImage = (e) =>{
     this.props.deleteImage(this.props.auth.userId, e.target.src)
-        setTimeout(() => {
-        this.props.fetchUserProfile(this.props.match.params.id)
-      }, 500);
   }
 
   renderProfile(){

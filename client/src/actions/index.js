@@ -1,6 +1,6 @@
 import {FETCH_IMAGE, FETCH_USER_PROFILE, UPDATE_PROFILE, DELETE_IMAGE} from './types'
 import {dogAPI, serverAPI} from '../apis/apiUrls'
-import history from '../history'
+// import history from '../history'
 
 export const signIn = (userId) =>{
   return{
